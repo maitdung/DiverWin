@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "gemini-cli",
+  "name": "Gemini CLI",
+  "descriptionKey": "packages.gemini-cli.description",
+  "category": "developer",
+  "subcategory": "ai-coding",
+  "publisher": "Google LLC",
+  "officialWebsite": "https://geminicli.com/docs/get-started/installation/",
+  "source": {
+    "type": "manual",
+    "manualUrl": "https://geminicli.com/docs/get-started/installation/",
+    "reason": "No Microsoft WinGet community manifest was verified at catalog build time; FreshWin opens Google's current installation page instead of executing a remote or npm script."
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 26100,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [
+      "Gemini CLI"
+    ],
+    "knownPaths": [
+      "%AppData%\\npm\\gemini.cmd"
+    ]
+  },
+  "dependencies": [
+    "nodejs-lts"
+  ],
+  "install": {
+    "mode": "manual",
+    "requiresAdmin": false,
+    "silent": false,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 0,
+    "notes": "FreshWin re-scans after the user completes the official workflow."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "mixed",
+    "notes": "Usage quotas and paid service terms are separate from the open-source client."
+  },
+  "recommendation": {
+    "profiles": [
+      "ai-developer"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "ai-coding"
+  ]
+}
+

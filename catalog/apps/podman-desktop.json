@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "id": "podman-desktop",
+  "name": "Podman Desktop",
+  "descriptionKey": "packages.podman-desktop.description",
+  "category": "developer",
+  "subcategory": "container",
+  "publisher": "Red Hat, Inc.",
+  "officialWebsite": "https://podman-desktop.io/",
+  "source": {
+    "type": "winget",
+    "packageId": "RedHat.Podman-Desktop",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 19041,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 8,
+    "hardware": {},
+    "features": {
+      "internet": true,
+      "virtualization": true,
+      "wsl": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "RedHat.Podman-Desktop"
+    ],
+    "registryDisplayNames": [
+      "Podman Desktop"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Programs\\podman-desktop\\Podman Desktop.exe"
+    ]
+  },
+  "dependencies": [
+    "wsl2"
+  ],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "container"
+  ]
+}
+

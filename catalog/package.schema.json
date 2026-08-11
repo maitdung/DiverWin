@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://freshwin.local/schemas/package-manifest-1.0.json",
+  "title": "FreshWin package manifest",
+  "description": "Declarative package, runtime, driver, or tool metadata consumed by FreshWin.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "descriptionKey",
+    "category",
+    "subcategory",
+    "publisher",
+    "officialWebsite",
+    "source",
+    "compatibility",
+    "versionPolicy",
+    "detection",
+    "dependencies",
+    "install",
+    "verification",
+    "restart",
+    "riskLevel",
+    "license",
+    "recommendation",
+    "tags"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "descriptionKey": { "type": "string", "pattern": "^packages\\.[a-z0-9-]+\\.description$" },
+    "category": {
+      "enum": ["essential", "communication", "gaming", "developer", "creator", "security", "runtime", "driver", "tool"]
+    },
+    "subcategory": { "type": "string", "minLength": 1 },
+    "publisher": { "type": "string", "minLength": 1 },
+    "officialWebsite": { "type": "string", "pattern": "^https://" },
+    "source": { "$ref": "#/$defs/source" },
+    "compatibility": { "$ref": "#/$defs/compatibility" },
+    "versionPolicy": { "$ref": "#/$defs/versionPolicy" },
+    "detection": { "$ref": "#/$defs/detection" },
+    "dependencies": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+    },
+    "install": { "$ref": "#/$defs/install" },
+    "verification": { "$ref": "#/$defs/verification" },
+    "restart": { "$ref": "#/$defs/restart" },
+    "riskLevel": { "enum": ["SAFE", "SYSTEM", "ADVANCED"] },
+    "license": { "$ref": "#/$defs/license" },
+    "recommendation": { "$ref": "#/$defs/recommendation" },
+    "tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["winget", "msstore", "official", "manual", "windows-feature"] },
+        "packageId": { "type": "string", "minLength": 1 },
+        "sourceName": { "enum": ["winget", "msstore"] },
+        "manualUrl": { "type": "string", "pattern": "^https://" },
+        "reason": { "type": "string", "minLength": 1 },
+        "featureNames": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "enum": ["winget", "msstore"] } } },
+          "then": { "required": ["packageId", "sourceName"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "winget" } }, "required": ["type"] },
+          "then": { "properties": { "sourceName": { "const": "winget" } } }
+        },
+        {
+          "if": { "properties": { "type": { "const": "msstore" } }, "required": ["type"] },
+          "then": { "properties": { "sourceName": { "const": "msstore" } } }
+        },
+        {
+          "if": { "properties": { "type": { "enum": ["official", "manual"] } } },
+          "then": { "required": ["manualUrl", "reason"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "windows-feature" } } },
+          "then": { "required": ["featureNames"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["os", "minimumBuild", "architectures", "minimumRamGB", "hardware", "features"],
+      "properties": {
+        "os": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["windows10", "windows11"] }
+        },
+        "minimumBuild": { "type": "integer", "minimum": 10240 },
+        "architectures": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["x86", "x64", "arm64"] }
+        },
+        "minimumRamGB": { "type": "number", "minimum": 0 },
+        "hardware": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "gpuVendors": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "enum": ["NVIDIA", "AMD", "Intel"] }
+            },
+            "oemVendors": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "enum": ["Dell", "HP", "Lenovo", "ASUS", "MSI", "Acer"] }
+            },
+            "deviceClasses": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "features": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "virtualization": { "type": "boolean" },
+            "wsl": { "type": "boolean" },
+            "microsoftStore": { "type": "boolean" },
+            "internet": { "type": "boolean" }
+          }
+        },
+        "providesFeatures": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["wsl"] }
+        }
+      }
+    },
+    "versionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "channel"],
+      "properties": {
+        "strategy": { "enum": ["latest-compatible", "lts", "vendor-recommended", "windows-managed", "manual-choice"] },
+        "channel": { "type": "string", "minLength": 1 },
+        "major": { "type": "integer", "minimum": 1 },
+        "notes": { "type": "string" }
+      }
+    },
+    "detection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wingetIds", "registryDisplayNames", "knownPaths"],
+      "properties": {
+        "wingetIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+      "registryDisplayNames": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+      "registryDisplayNamePrefixes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+        "knownPaths": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "windowsFeatures": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "appxPackageNames": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "services": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "deviceClass": { "type": "string" }
+      }
+    },
+    "install": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "requiresAdmin", "silent"],
+      "properties": {
+        "mode": { "enum": ["silent", "interactive", "manual"] },
+        "requiresAdmin": { "type": "boolean" },
+        "silent": { "type": "boolean" },
+        "scope": { "enum": ["user", "machine", "either", "system"] },
+        "notes": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["mode"],
+            "properties": { "mode": { "const": "silent" } }
+          },
+          "then": { "properties": { "silent": { "const": true } } }
+        },
+        {
+          "if": {
+            "required": ["mode"],
+            "properties": { "mode": { "enum": ["interactive", "manual"] } }
+          },
+          "then": { "properties": { "silent": { "const": false } } }
+        }
+      ]
+    },
+    "restart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "behavior"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "behavior": { "enum": ["none", "possible", "required"] }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["required"],
+            "properties": { "required": { "const": true } }
+          },
+          "then": { "properties": { "behavior": { "const": "required" } } }
+        },
+        {
+          "if": {
+            "required": ["behavior"],
+            "properties": { "behavior": { "const": "required" } }
+          },
+          "then": { "properties": { "required": { "const": true } } }
+        }
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["methods", "minimumMatches"],
+      "properties": {
+        "methods": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["winget", "registry", "path", "windows-feature", "appx", "service", "device-status", "manual"] }
+        },
+        "minimumMatches": { "type": "integer", "minimum": 0 },
+        "notes": { "type": "string" }
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "cost"],
+      "properties": {
+        "type": { "enum": ["open-source", "freeware", "freemium", "trial", "paid", "subscription", "windows-component", "mixed"] },
+        "cost": { "enum": ["free", "trial", "paid", "mixed", "included-with-windows"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profiles", "default", "conditions"],
+      "properties": {
+        "profiles": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "default": { "type": "boolean" },
+        "conditions": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "conflictGroup": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

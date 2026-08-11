@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "id": "dotnet-runtime",
+  "name": "Microsoft .NET Runtime 10.0",
+  "descriptionKey": "packages.dotnet-runtime.description",
+  "category": "runtime",
+  "subcategory": "system-runtime",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://dotnet.microsoft.com/download/dotnet/10.0",
+  "source": {
+    "type": "winget",
+    "packageId": "Microsoft.DotNet.Runtime.10",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x86",
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 1,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "lts",
+    "channel": "lts",
+    "major": 10,
+    "notes": ".NET 10 is the current long-term-support channel."
+  },
+  "detection": {
+    "wingetIds": [
+      "Microsoft.DotNet.Runtime.10"
+    ],
+    "registryDisplayNames": [],
+    "registryDisplayNamePrefixes": [
+      "Microsoft .NET Runtime - 10."
+    ],
+    "knownPaths": []
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine",
+    "notes": "Installs only the base .NET 10 runtime for console and service applications; it does not include the Windows Desktop or ASP.NET Core runtimes."
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry"
+    ],
+    "minimumMatches": 1,
+    "notes": "Accept either the exact WinGet identifier or an architecture-specific Microsoft .NET Runtime 10.x registry entry."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": "Microsoft .NET is distributed under the MIT license."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": [],
+    "notes": "Opt in for applications that require the base .NET 10 runtime; the matching Desktop Runtime and SDK already include it."
+  },
+  "tags": [
+    "runtime",
+    "microsoft",
+    "dotnet",
+    "console",
+    "dependency"
+  ]
+}

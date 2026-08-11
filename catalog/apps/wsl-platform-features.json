@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.0",
+  "id": "wsl-platform-features",
+  "name": "WSL 2 Platform Features",
+  "descriptionKey": "packages.wsl-platform-features.description",
+  "category": "runtime",
+  "subcategory": "windows-feature",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://learn.microsoft.com/windows/wsl/install-manual",
+  "source": {
+    "type": "windows-feature",
+    "featureNames": [
+      "Microsoft-Windows-Subsystem-Linux",
+      "VirtualMachinePlatform"
+    ]
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 19041,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "virtualization": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "windows-managed",
+    "channel": "windows-component"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [],
+    "knownPaths": [],
+    "windowsFeatures": [
+      "Microsoft-Windows-Subsystem-Linux",
+      "VirtualMachinePlatform"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "system"
+  },
+  "verification": {
+    "methods": [
+      "windows-feature"
+    ],
+    "minimumMatches": 1,
+    "notes": "Both optional features must be enabled before WSL 2 is considered ready."
+  },
+  "restart": {
+    "required": true,
+    "behavior": "required"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "windows-component",
+    "cost": "included-with-windows",
+    "notes": "Built into supported Windows editions."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": [],
+    "notes": "Selected only as a dependency of the WSL package."
+  },
+  "tags": [
+    "wsl",
+    "virtualization",
+    "windows-feature"
+  ]
+}

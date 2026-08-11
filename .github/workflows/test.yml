@@ -1,0 +1,78 @@
+name: test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: freshwin-test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  safe-tests:
+    name: Safe tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Report PowerShell host
+        shell: pwsh
+        run: $PSVersionTable | Format-List
+
+      - name: Run dependency-free test suite
+        shell: pwsh
+        run: ./tests/Run-Tests.ps1
+
+      - name: Run safe suite on Windows PowerShell 5.1
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          if ($PSVersionTable.PSVersion.Major -ne 5) {
+            throw "Expected Windows PowerShell 5.1, received $($PSVersionTable.PSVersion)."
+          }
+          .\tests\Run-Tests.ps1
+
+      - name: Ensure tests did not modify the workspace
+        shell: pwsh
+        run: |
+          $changes = @(git status --porcelain)
+          if ($changes.Count -gt 0) {
+            $changes | ForEach-Object { Write-Error $_ }
+            throw 'Tests modified tracked or untracked workspace files.'
+          }
+
+  windows-live-query-tests:
+    name: Windows live query-only tests
+    needs: safe-tests
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Run opt-in non-mutating Windows integration tests
+        shell: pwsh
+        run: ./tests/Run-Tests.ps1 -IncludeWindowsIntegration -NamePattern 'Live Windows|Live WinGet|Live network|Live Security|Live pre-reset|Live offline|Live diagnostics|Live DDU'
+
+      - name: Ensure Windows queries did not modify the workspace
+        shell: pwsh
+        run: |
+          $changes = @(git status --porcelain)
+          if ($changes.Count -gt 0) {
+            $changes | ForEach-Object { Write-Error $_ }
+            throw 'Windows integration tests modified the workspace.'
+          }

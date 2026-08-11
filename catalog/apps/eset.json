@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "id": "eset",
+  "name": "ESET Security",
+  "descriptionKey": "packages.eset.description",
+  "category": "security",
+  "subcategory": "antivirus",
+  "publisher": "ESET, spol. s r.o.",
+  "officialWebsite": "https://www.eset.com/",
+  "source": {
+    "type": "manual",
+    "manualUrl": "https://www.eset.com/",
+    "reason": "ESET edition, market, license, and installer choice vary; FreshWin does not guess or silently enroll users in a trial."
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [
+      "ESET Security"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\ESET\\"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "manual",
+    "requiresAdmin": true,
+    "silent": false,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 0,
+    "notes": "FreshWin re-scans after the user completes the official workflow."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "trial",
+    "cost": "trial",
+    "notes": "A paid license is required after any offered trial."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": [],
+    "conflictGroup": "active-antivirus"
+  },
+  "tags": [
+    "security",
+    "antivirus"
+  ]
+}
+

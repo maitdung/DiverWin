@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "id": "ffmpeg",
+  "name": "FFmpeg",
+  "descriptionKey": "packages.ffmpeg.description",
+  "category": "creator",
+  "subcategory": "media-tool",
+  "publisher": "FFmpeg project",
+  "officialWebsite": "https://ffmpeg.org/download.html",
+  "source": {
+    "type": "manual",
+    "manualUrl": "https://ffmpeg.org/download.html",
+    "reason": "The FFmpeg project does not publish its own Windows binary; its official download page lists external build providers, so FreshWin requires the user to choose there."
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [
+      "FFmpeg"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\ffmpeg\\bin\\ffmpeg.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "manual",
+    "requiresAdmin": false,
+    "silent": false,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 0,
+    "notes": "FreshWin re-scans after the user completes the official workflow."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "creator",
+    "media-tool"
+  ]
+}
+

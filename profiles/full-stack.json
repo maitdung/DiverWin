@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0",
+  "id": "full-stack",
+  "name": "Full-stack developer setup",
+  "nameKey": "profiles.full-stack.name",
+  "descriptionKey": "profiles.full-stack.description",
+  "packageIds": [
+    "7zip",
+    "chrome",
+    "git",
+    "git-lfs",
+    "github-cli",
+    "vscode",
+    "nodejs-lts",
+    "python",
+    "dotnet-sdk",
+    "vcpp-x64",
+    "vcpp-x86",
+    "bruno",
+    "dbeaver",
+    "mongodb-compass",
+    "wsl2",
+    "docker-desktop"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "A broad but bounded web, API, database, runtime, WSL, and container workstation."
+}

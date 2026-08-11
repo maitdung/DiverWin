@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "id": "vcpp-x64",
+  "name": "Microsoft Visual C++ v14 Redistributable (x64)",
+  "descriptionKey": "packages.vcpp-x64.description",
+  "category": "runtime",
+  "subcategory": "system-runtime",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist",
+  "source": {
+    "type": "winget",
+    "packageId": "Microsoft.VCRedist.2015+.x64",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 10240,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 1,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "vendor-recommended",
+    "channel": "v14-latest"
+  },
+  "detection": {
+    "wingetIds": [
+      "Microsoft.VCRedist.2015+.x64"
+    ],
+    "registryDisplayNames": [
+      "Microsoft Visual C++ 2015-2022 Redistributable (x64)"
+    ],
+    "registryDisplayNamePrefixes": [
+      "Microsoft Visual C++ 2015-2022 Redistributable (x64)"
+    ],
+    "knownPaths": []
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine",
+    "notes": "Installs Microsoft's current x64 v14 runtime, whose package also contains ARM64 binaries for supported ARM64 systems."
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry"
+    ],
+    "minimumMatches": 1,
+    "notes": "Accept either the exact WinGet identifier or the architecture-specific Microsoft registry display-name prefix."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": "Redistributable runtime licensed by Microsoft for use with applications built with Microsoft C and C++ tools."
+  },
+  "recommendation": {
+    "profiles": [
+      "gaming",
+      "developer",
+      "web-developer",
+      "full-stack",
+      "dotnet-developer",
+      "python-developer",
+      "full-recommended"
+    ],
+    "default": false,
+    "conditions": [
+      "dependency:php",
+      "dependency:rust"
+    ]
+  },
+  "tags": [
+    "runtime",
+    "microsoft",
+    "visual-cpp",
+    "dependency"
+  ]
+}

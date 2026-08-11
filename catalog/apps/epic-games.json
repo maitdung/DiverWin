@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.0",
+  "id": "epic-games",
+  "name": "Epic Games Launcher",
+  "descriptionKey": "packages.epic-games.description",
+  "category": "gaming",
+  "subcategory": "launcher",
+  "publisher": "Epic Games, Inc.",
+  "officialWebsite": "https://store.epicgames.com/download",
+  "source": {
+    "type": "winget",
+    "packageId": "EpicGames.EpicGamesLauncher",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "EpicGames.EpicGamesLauncher"
+    ],
+    "registryDisplayNames": [
+      "Epic Games Launcher"
+    ],
+    "knownPaths": [
+      "%ProgramFiles(x86)%\\Epic Games\\Launcher\\Portal\\Binaries\\Win64\\EpicGamesLauncher.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "gaming",
+    "launcher"
+  ]
+}
+

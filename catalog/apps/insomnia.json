@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "insomnia",
+  "name": "Insomnia",
+  "descriptionKey": "packages.insomnia.description",
+  "category": "developer",
+  "subcategory": "api",
+  "publisher": "Kong Inc.",
+  "officialWebsite": "https://insomnia.rest/download",
+  "source": {
+    "type": "winget",
+    "packageId": "Insomnia.Insomnia",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Insomnia.Insomnia"
+    ],
+    "registryDisplayNames": [
+      "Insomnia"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\insomnia\\Insomnia.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "mixed",
+    "notes": "The core client is open source; some collaboration features require a plan."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "api"
+  ]
+}
+

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0",
+  "id": "cursor",
+  "name": "Cursor",
+  "descriptionKey": "packages.cursor.description",
+  "category": "developer",
+  "subcategory": "editor",
+  "publisher": "Anysphere, Inc.",
+  "officialWebsite": "https://www.cursor.com/downloads",
+  "source": {
+    "type": "winget",
+    "packageId": "Anysphere.Cursor",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Anysphere.Cursor"
+    ],
+    "registryDisplayNames": [
+      "Cursor"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Programs\\cursor\\Cursor.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freemium",
+    "cost": "mixed",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "ai-developer"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "editor"
+  ]
+}
+

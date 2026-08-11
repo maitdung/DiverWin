@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0",
+  "id": "developer",
+  "name": "Developer setup",
+  "nameKey": "profiles.developer.name",
+  "descriptionKey": "profiles.developer.description",
+  "packageIds": [
+    "7zip",
+    "chrome",
+    "everything",
+    "git",
+    "git-lfs",
+    "github-cli",
+    "vscode",
+    "nodejs-lts",
+    "python",
+    "dotnet-sdk",
+    "java-jdk",
+    "vcpp-x64",
+    "vcpp-x86",
+    "wsl2",
+    "docker-desktop"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "A broad development workstation with version control, editor, major runtimes, WSL, and containers."
+}

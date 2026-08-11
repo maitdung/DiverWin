@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "edge-webview2-runtime",
+  "name": "Microsoft Edge WebView2 Runtime",
+  "descriptionKey": "packages.edge-webview2-runtime.description",
+  "category": "runtime",
+  "subcategory": "web-runtime",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://developer.microsoft.com/microsoft-edge/webview2/",
+  "source": {
+    "type": "winget",
+    "packageId": "Microsoft.EdgeWebView2Runtime",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 10240,
+    "architectures": [
+      "x86",
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 1,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "vendor-recommended",
+    "channel": "evergreen",
+    "notes": "Microsoft Edge Update services the Evergreen WebView2 Runtime."
+  },
+  "detection": {
+    "wingetIds": [
+      "Microsoft.EdgeWebView2Runtime"
+    ],
+    "registryDisplayNames": [],
+    "knownPaths": []
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either",
+    "notes": "WinGet selects Microsoft's signed Evergreen installer for the system architecture and available installation scope."
+  },
+  "verification": {
+    "methods": [
+      "winget"
+    ],
+    "minimumMatches": 1,
+    "notes": "FreshWin currently requires the exact WinGet-correlated package identity. Microsoft's dedicated EdgeUpdate pv registry value is not represented by the catalog schema."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": "Redistributable Microsoft runtime; applications and deployment remain subject to Microsoft's WebView2 terms."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": [],
+    "notes": "Install only when an application reports that the Evergreen WebView2 Runtime is missing."
+  },
+  "tags": [
+    "runtime",
+    "microsoft",
+    "edge",
+    "webview2",
+    "evergreen"
+  ]
+}

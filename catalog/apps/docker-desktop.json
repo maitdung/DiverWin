@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "id": "docker-desktop",
+  "name": "Docker Desktop",
+  "descriptionKey": "packages.docker-desktop.description",
+  "category": "developer",
+  "subcategory": "container",
+  "publisher": "Docker Inc.",
+  "officialWebsite": "https://www.docker.com/products/docker-desktop/",
+  "source": {
+    "type": "winget",
+    "packageId": "Docker.DockerDesktop",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 19045,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 8,
+    "hardware": {},
+    "features": {
+      "internet": true,
+      "virtualization": true,
+      "wsl": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Docker.DockerDesktop"
+    ],
+    "registryDisplayNames": [
+      "Docker Desktop"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\Docker\\Docker\\Docker Desktop.exe"
+    ]
+  },
+  "dependencies": [
+    "wsl2"
+  ],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "mixed",
+    "cost": "mixed",
+    "notes": "Free for qualifying personal, education, open-source, and small-business use; review Docker's current terms."
+  },
+  "recommendation": {
+    "profiles": [
+      "full-stack",
+      "devops"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "container"
+  ]
+}
+

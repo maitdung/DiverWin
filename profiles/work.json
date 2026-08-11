@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "id": "work",
+  "name": "Work setup",
+  "nameKey": "profiles.work.name",
+  "descriptionKey": "profiles.work.description",
+  "packageIds": [
+    "7zip",
+    "chrome",
+    "everything",
+    "unikey",
+    "vlc",
+    "teams",
+    "zoom",
+    "zalo"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "Everyday productivity plus common meeting and messaging applications."
+}

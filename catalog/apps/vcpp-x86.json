@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "id": "vcpp-x86",
+  "name": "Microsoft Visual C++ v14 Redistributable (x86)",
+  "descriptionKey": "packages.vcpp-x86.description",
+  "category": "runtime",
+  "subcategory": "system-runtime",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist",
+  "source": {
+    "type": "winget",
+    "packageId": "Microsoft.VCRedist.2015+.x86",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 10240,
+    "architectures": [
+      "x86",
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 1,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "vendor-recommended",
+    "channel": "v14-latest"
+  },
+  "detection": {
+    "wingetIds": [
+      "Microsoft.VCRedist.2015+.x86"
+    ],
+    "registryDisplayNames": [
+      "Microsoft Visual C++ 2015-2022 Redistributable (x86)"
+    ],
+    "registryDisplayNamePrefixes": [
+      "Microsoft Visual C++ 2015-2022 Redistributable (x86)"
+    ],
+    "knownPaths": []
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine",
+    "notes": "Installs Microsoft's current x86 v14 runtime for 32-bit native applications, including those running under emulation on x64 or ARM64 Windows."
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry"
+    ],
+    "minimumMatches": 1,
+    "notes": "Accept either the exact WinGet identifier or the architecture-specific Microsoft registry display-name prefix."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": "Redistributable runtime licensed by Microsoft for use with applications built with Microsoft C and C++ tools."
+  },
+  "recommendation": {
+    "profiles": [
+      "gaming",
+      "developer",
+      "web-developer",
+      "full-stack",
+      "dotnet-developer",
+      "python-developer",
+      "full-recommended"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "runtime",
+    "microsoft",
+    "visual-cpp",
+    "x86",
+    "dependency"
+  ]
+}

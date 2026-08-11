@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "jetbrains-toolbox",
+  "name": "JetBrains Toolbox",
+  "descriptionKey": "packages.jetbrains-toolbox.description",
+  "category": "developer",
+  "subcategory": "ide-manager",
+  "publisher": "JetBrains s.r.o.",
+  "officialWebsite": "https://www.jetbrains.com/toolbox-app/",
+  "source": {
+    "type": "winget",
+    "packageId": "JetBrains.Toolbox",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "JetBrains.Toolbox"
+    ],
+    "registryDisplayNames": [
+      "JetBrains Toolbox"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\JetBrains\\Toolbox\\bin\\jetbrains-toolbox.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": "The Toolbox app is free; individual IDE licenses vary."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "ide-manager"
+  ]
+}
+

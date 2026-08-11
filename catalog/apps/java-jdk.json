@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0",
+  "id": "java-jdk",
+  "name": "Eclipse Temurin JDK 21",
+  "descriptionKey": "packages.java-jdk.description",
+  "category": "developer",
+  "subcategory": "runtime",
+  "publisher": "Eclipse Adoptium",
+  "officialWebsite": "https://adoptium.net/temurin/releases/?version=21",
+  "source": {
+    "type": "winget",
+    "packageId": "EclipseAdoptium.Temurin.21.JDK",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "lts",
+    "channel": "lts"
+  },
+  "detection": {
+    "wingetIds": [
+      "EclipseAdoptium.Temurin.21.JDK"
+    ],
+    "registryDisplayNames": [
+      "Eclipse Temurin JDK 21"
+    ],
+    "knownPaths": []
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "full-stack"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "runtime"
+  ]
+}

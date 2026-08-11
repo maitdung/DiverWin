@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "id": "directx-legacy-runtime",
+  "name": "DirectX End-User Runtime (Legacy Libraries)",
+  "descriptionKey": "packages.directx-legacy-runtime.description",
+  "category": "runtime",
+  "subcategory": "gaming-runtime",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://www.microsoft.com/en-us/download/details.aspx?id=35",
+  "source": {
+    "type": "winget",
+    "packageId": "Microsoft.DirectX",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 10240,
+    "architectures": [
+      "x86",
+      "x64"
+    ],
+    "minimumRamGB": 1,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "vendor-recommended",
+    "channel": "june-2010-legacy",
+    "notes": "This compatibility package supplies legacy optional libraries; Direct3D and other core DirectX components remain Windows-managed."
+  },
+  "detection": {
+    "wingetIds": [
+      "Microsoft.DirectX"
+    ],
+    "registryDisplayNames": [],
+    "knownPaths": [],
+    "appxPackageNames": [
+      "Microsoft.DirectXRuntime"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine",
+    "notes": "Installs Microsoft's legacy D3DX, XAudio 2.7, XInput 1.3, XACT, and related optional libraries through the exact WinGet package; it does not replace Windows DirectX."
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "appx"
+    ],
+    "minimumMatches": 1,
+    "notes": "Accept the exact WinGet package identity or Microsoft's DirectXRuntime AppX identity when the AppX installer is selected."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": "Microsoft proprietary redistributable runtime libraries."
+  },
+  "recommendation": {
+    "profiles": [
+      "gaming"
+    ],
+    "default": false,
+    "conditions": [],
+    "notes": "Use for older games that explicitly require one of the legacy libraries; modern DirectX components are already included with Windows."
+  },
+  "tags": [
+    "runtime",
+    "microsoft",
+    "directx",
+    "legacy",
+    "gaming",
+    "xinput",
+    "xaudio"
+  ]
+}

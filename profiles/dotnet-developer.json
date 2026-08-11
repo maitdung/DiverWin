@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "id": "dotnet-developer",
+  "name": ".NET developer setup",
+  "nameKey": "profiles.dotnet-developer.name",
+  "descriptionKey": "profiles.dotnet-developer.description",
+  "packageIds": [
+    "7zip",
+    "git",
+    "git-lfs",
+    "github-cli",
+    "vscode",
+    "dotnet-sdk",
+    "visual-studio",
+    "vcpp-x64",
+    "vcpp-x86"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "Version control, editors, the current .NET LTS SDK, and native prerequisites; Visual Studio remains an explicit interactive item."
+}

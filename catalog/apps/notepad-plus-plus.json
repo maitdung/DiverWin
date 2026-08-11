@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "notepad-plus-plus",
+  "name": "Notepad++",
+  "descriptionKey": "packages.notepad-plus-plus.description",
+  "category": "developer",
+  "subcategory": "editor",
+  "publisher": "Notepad++ Team",
+  "officialWebsite": "https://notepad-plus-plus.org/downloads/",
+  "source": {
+    "type": "winget",
+    "packageId": "Notepad++.Notepad++",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Notepad++.Notepad++"
+    ],
+    "registryDisplayNames": [
+      "Notepad++"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\Notepad++\\notepad++.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "editor"
+  ]
+}
+

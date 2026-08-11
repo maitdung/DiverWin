@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "blender",
+  "name": "Blender",
+  "descriptionKey": "packages.blender.description",
+  "category": "creator",
+  "subcategory": "3d",
+  "publisher": "Blender Foundation",
+  "officialWebsite": "https://www.blender.org/download/",
+  "source": {
+    "type": "winget",
+    "packageId": "BlenderFoundation.Blender",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 8,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "BlenderFoundation.Blender"
+    ],
+    "registryDisplayNames": [
+      "Blender"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\Blender Foundation\\Blender\\blender.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "creator",
+    "3d"
+  ]
+}
+

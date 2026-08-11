@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "id": "devops",
+  "name": "DevOps setup",
+  "nameKey": "profiles.devops.name",
+  "descriptionKey": "profiles.devops.description",
+  "packageIds": [
+    "7zip",
+    "git",
+    "git-lfs",
+    "github-cli",
+    "vscode",
+    "wsl2",
+    "docker-desktop",
+    "terraform",
+    "kubectl",
+    "helm"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "A vendor-neutral infrastructure baseline with Git, WSL, containers, Terraform, Kubernetes, and Helm; cloud-specific CLIs remain opt-in."
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "id": "essential",
+  "name": "Essential setup",
+  "nameKey": "profiles.essential.name",
+  "descriptionKey": "profiles.essential.description",
+  "packageIds": [
+    "7zip",
+    "chrome",
+    "everything",
+    "unikey",
+    "vlc"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "A compact baseline of everyday browsing, search, input, archive, and media tools."
+}

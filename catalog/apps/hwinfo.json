@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "hwinfo",
+  "name": "HWiNFO",
+  "descriptionKey": "packages.hwinfo.description",
+  "category": "gaming",
+  "subcategory": "hardware-monitoring",
+  "publisher": "REALiX, s.r.o.",
+  "officialWebsite": "https://www.hwinfo.com/download/",
+  "source": {
+    "type": "winget",
+    "packageId": "REALiX.HWiNFO",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "REALiX.HWiNFO"
+    ],
+    "registryDisplayNames": [
+      "HWiNFO"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\HWiNFO64\\HWiNFO64.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "gaming",
+    "hardware-monitoring"
+  ]
+}
+

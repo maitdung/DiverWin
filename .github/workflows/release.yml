@@ -1,0 +1,41 @@
+name: FreshWin release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Verify tag matches the authoritative module version
+        shell: powershell
+        run: |
+          $manifest = Import-PowerShellDataFile .\FreshWin.psd1
+          $expected = 'v' + [string]$manifest.ModuleVersion
+          if ($env:GITHUB_REF_NAME -cne $expected) { throw "Tag '$env:GITHUB_REF_NAME' must equal '$expected'." }
+
+      - name: Run Windows PowerShell 5.1 portable suite
+        shell: powershell
+        run: .\tests\Run-Tests.ps1
+
+      - name: Build deterministic release assets
+        shell: powershell
+        run: |
+          $published = [DateTimeOffset](git show -s --format=%cI HEAD)
+          .\tools\New-FreshWinRelease.ps1 -OutputDirectory .\artifacts -Repository '${{ github.repository }}' -PublishedAtUtc $published
+
+      - name: Publish verified GitHub Release assets
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $env:GITHUB_REF_NAME .\artifacts\* --verify-tag --title "FreshWin $env:GITHUB_REF_NAME" --generate-notes

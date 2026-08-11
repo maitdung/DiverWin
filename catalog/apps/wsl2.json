@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "id": "wsl2",
+  "name": "Windows Subsystem for Linux",
+  "descriptionKey": "packages.wsl2.description",
+  "category": "developer",
+  "subcategory": "virtualization",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://learn.microsoft.com/windows/wsl/install",
+  "source": {
+    "type": "winget",
+    "packageId": "Microsoft.WSL",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 19041,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true,
+      "virtualization": true
+    },
+    "providesFeatures": [
+      "wsl"
+    ]
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Microsoft.WSL"
+    ],
+    "registryDisplayNames": [
+      "Windows Subsystem for Linux"
+    ],
+    "knownPaths": []
+  },
+  "dependencies": [
+    "wsl-platform-features"
+  ],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "windows-component",
+    "cost": "included-with-windows",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "developer",
+      "full-stack",
+      "devops",
+      "ai-developer"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "virtualization"
+  ]
+}

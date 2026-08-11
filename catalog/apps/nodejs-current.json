@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "id": "nodejs-current",
+  "name": "Node.js Current",
+  "descriptionKey": "packages.nodejs-current.description",
+  "category": "developer",
+  "subcategory": "runtime",
+  "publisher": "OpenJS Foundation",
+  "officialWebsite": "https://nodejs.org/en/download",
+  "source": {
+    "type": "winget",
+    "packageId": "OpenJS.NodeJS",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "OpenJS.NodeJS"
+    ],
+    "registryDisplayNames": [
+      "Node.js Current"
+    ],
+    "knownPaths": []
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": [],
+    "conflictGroup": "nodejs-channel"
+  },
+  "tags": [
+    "developer",
+    "runtime"
+  ]
+}

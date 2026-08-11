@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "id": "sublime-text",
+  "name": "Sublime Text",
+  "descriptionKey": "packages.sublime-text.description",
+  "category": "developer",
+  "subcategory": "editor",
+  "publisher": "Sublime HQ Pty Ltd",
+  "officialWebsite": "https://www.sublimetext.com/download",
+  "source": {
+    "type": "winget",
+    "packageId": "SublimeHQ.SublimeText.4",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "SublimeHQ.SublimeText.4"
+    ],
+    "registryDisplayNames": [
+      "Sublime Text"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\Sublime Text\\sublime_text.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "trial",
+    "cost": "trial",
+    "notes": "Continued use requires purchasing a license."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "editor"
+  ]
+}
+

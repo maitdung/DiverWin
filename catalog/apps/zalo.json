@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "id": "zalo",
+  "name": "Zalo PC",
+  "descriptionKey": "packages.zalo.description",
+  "category": "communication",
+  "subcategory": "chat",
+  "publisher": "VNG Corporation",
+  "officialWebsite": "https://zalo.me/pc",
+  "source": {
+    "type": "winget",
+    "packageId": "VNGCorp.Zalo",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "VNGCorp.Zalo"
+    ],
+    "registryDisplayNames": [
+      "Zalo PC"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Programs\\Zalo\\Zalo.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "work"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "communication",
+    "chat"
+  ]
+}
+

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "id": "python",
+  "name": "Python 3.14",
+  "descriptionKey": "packages.python.description",
+  "category": "developer",
+  "subcategory": "runtime",
+  "publisher": "Python Software Foundation",
+  "officialWebsite": "https://www.python.org/downloads/windows/",
+  "source": {
+    "type": "winget",
+    "packageId": "Python.Python.3.14",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Python.Python.3.14"
+    ],
+    "registryDisplayNames": [
+      "Python 3.14"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Programs\\Python\\Python314\\python.exe",
+      "%ProgramFiles%\\Python314\\python.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "developer",
+      "full-stack",
+      "python-developer",
+      "devops",
+      "ai-developer",
+      "full-recommended"
+    ],
+    "default": true,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "runtime"
+  ]
+}
+

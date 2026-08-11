@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "id": "ai-developer",
+  "name": "AI developer setup",
+  "nameKey": "profiles.ai-developer.name",
+  "descriptionKey": "profiles.ai-developer.description",
+  "packageIds": [
+    "7zip",
+    "git",
+    "git-lfs",
+    "github-cli",
+    "vscode",
+    "python",
+    "vcpp-x64",
+    "wsl2",
+    "docker-desktop"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "A local AI-development baseline with Python, large-file version control, native prerequisites, WSL, and containers; models and GPU drivers remain opt-in."
+}

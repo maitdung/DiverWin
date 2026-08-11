@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "id": "ubuntu-wsl",
+  "name": "Ubuntu 24.04 LTS for WSL",
+  "descriptionKey": "packages.ubuntu-wsl.description",
+  "category": "developer",
+  "subcategory": "virtualization",
+  "publisher": "Canonical Ltd.",
+  "officialWebsite": "https://ubuntu.com/desktop/wsl",
+  "source": {
+    "type": "winget",
+    "packageId": "Canonical.Ubuntu.2404",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 19041,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true,
+      "virtualization": true,
+      "wsl": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Canonical.Ubuntu.2404"
+    ],
+    "registryDisplayNames": [
+      "Ubuntu 24.04 LTS for WSL"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Microsoft\\WindowsApps\\ubuntu2404.exe"
+    ]
+  },
+  "dependencies": [
+    "wsl2"
+  ],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "devops",
+      "ai-developer"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "virtualization"
+  ]
+}
+

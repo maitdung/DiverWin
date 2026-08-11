@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0",
+  "id": "unikey",
+  "name": "UniKey",
+  "descriptionKey": "packages.unikey.description",
+  "category": "essential",
+  "subcategory": "input",
+  "publisher": "Phạm Kim Long",
+  "officialWebsite": "https://www.unikey.org/",
+  "source": {
+    "type": "winget",
+    "packageId": "UniKey.UniKey",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x86",
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable",
+    "notes": "WinGet resolves a compatible build; the current native ARM64 release is intended for Windows 11 ARM64 devices."
+  },
+  "detection": {
+    "wingetIds": [
+      "UniKey.UniKey"
+    ],
+    "registryDisplayNames": [
+      "UniKey"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\UniKey\\UniKeyNT.exe",
+      "%LocalAppData%\\Microsoft\\WinGet\\Links\\UnikeyNT.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": "Current Windows binaries are distributed free of charge; the vendor separately publishes GPL-licensed source for the core engine and older versions."
+  },
+  "recommendation": {
+    "profiles": [
+      "essential",
+      "work",
+      "full-recommended"
+    ],
+    "default": true,
+    "conditions": []
+  },
+  "tags": [
+    "essential",
+    "input"
+  ]
+}

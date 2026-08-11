@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "id": "dotnet-sdk",
+  "name": "Microsoft .NET SDK 10.0",
+  "descriptionKey": "packages.dotnet-sdk.description",
+  "category": "developer",
+  "subcategory": "runtime",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://dotnet.microsoft.com/download/dotnet/10.0",
+  "source": {
+    "type": "winget",
+    "packageId": "Microsoft.DotNet.SDK.10",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "lts",
+    "channel": "lts"
+  },
+  "detection": {
+    "wingetIds": [
+      "Microsoft.DotNet.SDK.10"
+    ],
+    "registryDisplayNames": [
+      ".NET SDK 10"
+    ],
+    "registryDisplayNamePrefixes": [
+      "Microsoft .NET SDK 10."
+    ],
+    "knownPaths": []
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry"
+    ],
+    "minimumMatches": 1,
+    "notes": "Use the exact WinGet ID or the major-version-bounded Microsoft SDK registry name; a generic dotnet.exe path is not sufficient."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "developer",
+      "full-stack",
+      "dotnet-developer",
+      "full-recommended"
+    ],
+    "default": true,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "runtime"
+  ]
+}

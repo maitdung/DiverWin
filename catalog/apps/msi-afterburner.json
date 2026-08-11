@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "id": "msi-afterburner",
+  "name": "MSI Afterburner",
+  "descriptionKey": "packages.msi-afterburner.description",
+  "category": "gaming",
+  "subcategory": "gpu-utility",
+  "publisher": "Micro-Star INT'L CO., LTD.",
+  "officialWebsite": "https://www.msi.com/Landing/afterburner/graphics-cards",
+  "source": {
+    "type": "manual",
+    "manualUrl": "https://www.msi.com/Landing/afterburner/graphics-cards",
+    "reason": "Available WinGet community manifests have historically used a third-party download host; FreshWin keeps this advanced GPU utility on MSI's official page."
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [
+      "MSI Afterburner"
+    ],
+    "knownPaths": [
+      "%ProgramFiles(x86)%\\MSI Afterburner\\MSIAfterburner.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "manual",
+    "requiresAdmin": true,
+    "silent": false,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 0,
+    "notes": "FreshWin re-scans after the user completes the official workflow."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "ADVANCED",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "gaming",
+    "gpu-utility"
+  ]
+}
+

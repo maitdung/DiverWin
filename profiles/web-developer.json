@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "id": "web-developer",
+  "name": "Web developer setup",
+  "nameKey": "profiles.web-developer.name",
+  "descriptionKey": "profiles.web-developer.description",
+  "packageIds": [
+    "7zip",
+    "chrome",
+    "firefox",
+    "git",
+    "git-lfs",
+    "github-cli",
+    "vscode",
+    "nodejs-lts",
+    "bruno"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "A focused browser, version-control, editor, Node.js LTS, and API-client baseline for web development."
+}

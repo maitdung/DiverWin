@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0",
+  "id": "rust",
+  "name": "Rustup",
+  "descriptionKey": "packages.rust.description",
+  "category": "developer",
+  "subcategory": "runtime",
+  "publisher": "The Rust Project Developers",
+  "officialWebsite": "https://www.rust-lang.org/tools/install",
+  "source": {
+    "type": "winget",
+    "packageId": "Rustlang.Rustup",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Rustlang.Rustup"
+    ],
+    "registryDisplayNames": [
+      "Rustup"
+    ],
+    "knownPaths": [
+      "%UserProfile%\\.cargo\\bin\\rustc.exe"
+    ]
+  },
+  "dependencies": [
+    "vcpp-x64"
+  ],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "runtime"
+  ]
+}
+

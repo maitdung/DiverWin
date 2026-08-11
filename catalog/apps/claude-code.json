@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "id": "claude-code",
+  "name": "Claude Code",
+  "descriptionKey": "packages.claude-code.description",
+  "category": "developer",
+  "subcategory": "ai-coding",
+  "publisher": "Anthropic PBC",
+  "officialWebsite": "https://code.claude.com/docs/en/installation",
+  "source": {
+    "type": "winget",
+    "packageId": "Anthropic.ClaudeCode",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Anthropic.ClaudeCode"
+    ],
+    "registryDisplayNames": [
+      "Claude Code"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Microsoft\\WinGet\\Links\\claude.exe"
+    ]
+  },
+  "dependencies": [
+    "git"
+  ],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "subscription",
+    "cost": "mixed",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "ai-developer"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "ai-coding"
+  ]
+}
+

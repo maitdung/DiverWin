@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "id": "bitdefender",
+  "name": "Bitdefender",
+  "descriptionKey": "packages.bitdefender.description",
+  "category": "security",
+  "subcategory": "antivirus",
+  "publisher": "Bitdefender",
+  "officialWebsite": "https://www.bitdefender.com/en-us/consumer/",
+  "source": {
+    "type": "manual",
+    "manualUrl": "https://www.bitdefender.com/en-us/consumer/",
+    "reason": "Consumer product, edition, region, subscription, and trial choices require an interactive official-vendor workflow."
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [
+      "Bitdefender"
+    ],
+    "knownPaths": [
+      "%ProgramFiles%\\Bitdefender\\"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "manual",
+    "requiresAdmin": true,
+    "silent": false,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 0,
+    "notes": "FreshWin re-scans after the user completes the official workflow."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "possible"
+  },
+  "riskLevel": "SYSTEM",
+  "license": {
+    "type": "trial",
+    "cost": "trial",
+    "notes": "Paid subscription required after any offered trial."
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": [],
+    "conflictGroup": "active-antivirus"
+  },
+  "tags": [
+    "security",
+    "antivirus"
+  ]
+}
+

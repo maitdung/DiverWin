@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "id": "codex-cli",
+  "name": "Codex CLI",
+  "descriptionKey": "packages.codex-cli.description",
+  "category": "developer",
+  "subcategory": "ai-coding",
+  "publisher": "OpenAI",
+  "officialWebsite": "https://learn.chatgpt.com/docs/codex/cli",
+  "source": {
+    "type": "winget",
+    "packageId": "OpenAI.Codex",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 4,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "OpenAI.Codex"
+    ],
+    "registryDisplayNames": [
+      "Codex CLI"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Microsoft\\WinGet\\Links\\codex.exe"
+    ]
+  },
+  "dependencies": [
+    "ripgrep",
+    "vcpp-x64"
+  ],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "mixed",
+    "notes": "The CLI is open source; hosted model access and account eligibility are governed separately."
+  },
+  "recommendation": {
+    "profiles": [
+      "ai-developer"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "ai-coding"
+  ]
+}

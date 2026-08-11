@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "id": "ripgrep",
+  "name": "ripgrep (MSVC)",
+  "descriptionKey": "packages.ripgrep.description",
+  "category": "developer",
+  "subcategory": "cli-tool",
+  "publisher": "BurntSushi",
+  "officialWebsite": "https://github.com/BurntSushi/ripgrep",
+  "source": {
+    "type": "winget",
+    "packageId": "BurntSushi.ripgrep.MSVC",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 1,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "BurntSushi.ripgrep.MSVC"
+    ],
+    "registryDisplayNames": [
+      "RipGrep MSVC"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Microsoft\\WinGet\\Links\\rg.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either",
+    "notes": "Installs the official MSVC portable build registered by WinGet."
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": "Prefer the exact WinGet identity; the command shim is a secondary portable-package signal."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": "Dual-licensed under MIT and the Unlicense."
+  },
+  "recommendation": {
+    "profiles": [
+      "ai-developer"
+    ],
+    "default": false,
+    "conditions": [
+      "dependency:codex-cli"
+    ]
+  },
+  "tags": [
+    "developer",
+    "cli",
+    "search",
+    "regex",
+    "dependency"
+  ]
+}

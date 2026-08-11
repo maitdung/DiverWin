@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0",
+  "id": "python-developer",
+  "name": "Python developer setup",
+  "nameKey": "profiles.python-developer.name",
+  "descriptionKey": "profiles.python-developer.description",
+  "packageIds": [
+    "7zip",
+    "git",
+    "git-lfs",
+    "github-cli",
+    "vscode",
+    "python",
+    "vcpp-x64"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "A focused Python workstation with version control, editor, Git LFS, and the native x64 runtime commonly needed by extension modules."
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0",
+  "id": "xbox-app",
+  "name": "Xbox App",
+  "descriptionKey": "packages.xbox-app.description",
+  "category": "gaming",
+  "subcategory": "launcher",
+  "publisher": "Microsoft Corporation",
+  "officialWebsite": "https://www.xbox.com/apps/xbox-app-on-pc",
+  "source": {
+    "type": "msstore",
+    "packageId": "9MV0B5HZVK9Z",
+    "sourceName": "msstore"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 19041,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true,
+      "microsoftStore": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [
+      "Xbox App"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Microsoft\\WindowsApps\\XboxPcApp.exe"
+    ],
+    "appxPackageNames": [
+      "Microsoft.GamingApp"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "registry",
+      "path",
+      "appx"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "gaming",
+    "launcher"
+  ]
+}
+

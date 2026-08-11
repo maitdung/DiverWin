@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0",
+  "id": "steam",
+  "name": "Steam",
+  "descriptionKey": "packages.steam.description",
+  "category": "gaming",
+  "subcategory": "launcher",
+  "publisher": "Valve Corporation",
+  "officialWebsite": "https://store.steampowered.com/about/",
+  "source": {
+    "type": "winget",
+    "packageId": "Valve.Steam",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Valve.Steam"
+    ],
+    "registryDisplayNames": [
+      "Steam"
+    ],
+    "knownPaths": [
+      "%ProgramFiles(x86)%\\Steam\\steam.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": true,
+    "silent": true,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "gaming",
+      "full-recommended"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "gaming",
+    "launcher"
+  ]
+}
+

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0",
+  "id": "gaming",
+  "name": "Gaming setup",
+  "nameKey": "profiles.gaming.name",
+  "descriptionKey": "profiles.gaming.description",
+  "packageIds": [
+    "7zip",
+    "chrome",
+    "everything",
+    "vlc",
+    "discord",
+    "steam",
+    "obs-studio",
+    "hwinfo",
+    "vcpp-x64",
+    "vcpp-x86",
+    "xbox-app"
+  ],
+  "updatePolicy": "missing-only",
+  "notes": "Core game library, communication, streaming, media, and hardware-monitoring tools without vendor-specific launchers."
+}

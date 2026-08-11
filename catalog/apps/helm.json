@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0",
+  "id": "helm",
+  "name": "Helm",
+  "descriptionKey": "packages.helm.description",
+  "category": "developer",
+  "subcategory": "devops",
+  "publisher": "Helm Authors",
+  "officialWebsite": "https://helm.sh/docs/intro/install/",
+  "source": {
+    "type": "winget",
+    "packageId": "Helm.Helm",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64",
+      "arm64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Helm.Helm"
+    ],
+    "registryDisplayNames": [
+      "Helm"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Microsoft\\WinGet\\Links\\helm.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "open-source",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "devops"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "devops"
+  ]
+}
+

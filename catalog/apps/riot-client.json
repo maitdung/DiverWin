@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "id": "riot-client",
+  "name": "Riot Client",
+  "descriptionKey": "packages.riot-client.description",
+  "category": "gaming",
+  "subcategory": "launcher",
+  "publisher": "Riot Games, Inc.",
+  "officialWebsite": "https://www.riotgames.com/",
+  "source": {
+    "type": "manual",
+    "manualUrl": "https://www.riotgames.com/en",
+    "reason": "No current Riot Client manifest was verified in the Microsoft WinGet community repository; game-specific official installers are region and title dependent."
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [],
+    "registryDisplayNames": [
+      "Riot Client"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Riot Games\\Riot Client\\RiotClientServices.exe"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "manual",
+    "requiresAdmin": true,
+    "silent": false,
+    "scope": "machine"
+  },
+  "verification": {
+    "methods": [
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 0,
+    "notes": "FreshWin re-scans after the user completes the official workflow."
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "gaming",
+    "launcher"
+  ]
+}
+

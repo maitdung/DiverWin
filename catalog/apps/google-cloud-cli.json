@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "id": "google-cloud-cli",
+  "name": "Google Cloud CLI",
+  "descriptionKey": "packages.google-cloud-cli.description",
+  "category": "developer",
+  "subcategory": "cloud",
+  "publisher": "Google LLC",
+  "officialWebsite": "https://cloud.google.com/sdk/docs/install",
+  "source": {
+    "type": "winget",
+    "packageId": "Google.CloudSDK",
+    "sourceName": "winget"
+  },
+  "compatibility": {
+    "os": [
+      "windows10",
+      "windows11"
+    ],
+    "minimumBuild": 17763,
+    "architectures": [
+      "x64"
+    ],
+    "minimumRamGB": 2,
+    "hardware": {},
+    "features": {
+      "internet": true
+    }
+  },
+  "versionPolicy": {
+    "strategy": "latest-compatible",
+    "channel": "stable"
+  },
+  "detection": {
+    "wingetIds": [
+      "Google.CloudSDK"
+    ],
+    "registryDisplayNames": [
+      "Google Cloud CLI"
+    ],
+    "knownPaths": [
+      "%LocalAppData%\\Google\\Cloud SDK\\google-cloud-sdk\\bin\\gcloud.cmd"
+    ]
+  },
+  "dependencies": [],
+  "install": {
+    "mode": "silent",
+    "requiresAdmin": false,
+    "silent": true,
+    "scope": "either"
+  },
+  "verification": {
+    "methods": [
+      "winget",
+      "registry",
+      "path"
+    ],
+    "minimumMatches": 1,
+    "notes": ""
+  },
+  "restart": {
+    "required": false,
+    "behavior": "none"
+  },
+  "riskLevel": "SAFE",
+  "license": {
+    "type": "freeware",
+    "cost": "free",
+    "notes": ""
+  },
+  "recommendation": {
+    "profiles": [
+      "devops"
+    ],
+    "default": false,
+    "conditions": []
+  },
+  "tags": [
+    "developer",
+    "cloud"
+  ]
+}
+
