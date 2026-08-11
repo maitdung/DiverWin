@@ -1,0 +1,8 @@
+﻿.DS_Store
+**/.DS_Store
+windows-test-results.txt
+*.log
+*.jsonl
+dist/
+release/
+artifacts/
