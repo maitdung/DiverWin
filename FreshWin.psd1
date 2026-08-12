@@ -1,6 +1,6 @@
 @{
     RootModule           = 'FreshWin.psm1'
-    ModuleVersion        = '0.1.0'
+    ModuleVersion        = '0.1.1'
     GUID                 = 'd148d85e-8bc9-4e73-a983-71da14b22190'
     Author               = 'FreshWin contributors'
     CompanyName          = 'Community'
