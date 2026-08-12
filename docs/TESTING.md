@@ -58,9 +58,9 @@ Examples:
 
 ## CI
 
-The GitHub Actions workflow runs the safe suite on macOS, Ubuntu, and Windows with PowerShell 7. The Windows runner also runs the safe suite under the inbox `powershell.exe` host and asserts that its major version is 5, covering the module's declared Windows PowerShell 5.1 floor. Windows additionally opts into query-only live tests in a separate job. Workflow permissions are read-only, checkout credentials are not persisted, and no repository secrets are requested.
+FreshWin supports Windows 10 and Windows 11 only. The required GitHub Actions workflow runs on `windows-latest` under PowerShell 7 and the inbox Windows PowerShell 5.1 host. Windows additionally opts into query-only live tests in a separate job. The release workflow has its own required Windows CI prerequisite and cannot publish until both Windows PowerShell hosts pass. Workflow permissions are read-only for tests, checkout credentials are not persisted, and test jobs request no repository secrets.
 
-The PowerShell 5.1 job is configured but cannot be executed or claimed successful from this macOS workspace. Its result remains pending until the updated workflow runs on `windows-latest`; a local PowerShell 7 pass is not a substitute.
+A local pass is not a substitute for the required `windows-latest` result. Windows-live behavior is claimed only from an actual opt-in Windows run.
 
 CI success means the declared tests passed on those runners. It does not authorize claims about untested Windows editions, ARM64, enterprise policy, vendor installers, driver export/install, DDU cleanup, reset, reboot continuity, or interactive UAC.
 

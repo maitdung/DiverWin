@@ -88,7 +88,11 @@ function Invoke-FreshWinTestPowerShellProcess {
     )
     $start = New-Object Diagnostics.ProcessStartInfo
     $start.FileName = Get-FreshWinTestPowerShellExecutable
-    $start.Arguments = (@('-NoLogo','-NoProfile') + @($Arguments) | ForEach-Object { ConvertTo-FreshWinTestNativeArgument -Value ([string]$_) }) -join ' '
+    $hostArguments = @('-NoLogo','-NoProfile')
+    if ([Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) {
+        $hostArguments += @('-ExecutionPolicy','Bypass')
+    }
+    $start.Arguments = ($hostArguments + @($Arguments) | ForEach-Object { ConvertTo-FreshWinTestNativeArgument -Value ([string]$_) }) -join ' '
     $start.WorkingDirectory = [IO.Path]::GetFullPath($ProjectRoot)
     $start.UseShellExecute = $false
     $start.CreateNoWindow = $true

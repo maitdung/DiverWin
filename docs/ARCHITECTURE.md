@@ -28,7 +28,7 @@ The command-line entrypoint is an adapter. Reusable behavior belongs in the modu
 
 `src/Core` owns JSON I/O, configuration, state envelopes, logging/redaction, localization, safe native-process execution, and assistant intent validation.
 
-`src/Scanner` gathers platform, system, hardware, network, activation, Windows Update, and software observations. Live Windows APIs are guarded. Most scanners accept provided objects, allowing the same transformation logic to be tested with macOS-safe fixtures.
+`src/Scanner` gathers platform, system, hardware, network, activation, Windows Update, and software observations. FreshWin supports Windows 10 and Windows 11 only, and live Windows APIs are guarded. Most scanners accept provided objects so transformations can be tested without mutating the Windows host.
 
 `src/Drivers` classifies PnP state and produces official OEM/GPU guidance. Driver recommendations do not imply automatic third-party downloads.
 

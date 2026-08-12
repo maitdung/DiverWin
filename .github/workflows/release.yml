@@ -9,7 +9,24 @@ permissions:
   contents: write
 
 jobs:
+  windows-ci:
+    name: Required Windows CI
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run PowerShell 7 portable suite
+        shell: pwsh
+        run: .\tests\Run-Tests.ps1
+
+      - name: Run Windows PowerShell 5.1 portable suite
+        shell: powershell
+        run: .\tests\Run-Tests.ps1
+
   release:
+    needs: windows-ci
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,10 +39,6 @@ jobs:
           $manifest = Import-PowerShellDataFile .\FreshWin.psd1
           $expected = 'v' + [string]$manifest.ModuleVersion
           if ($env:GITHUB_REF_NAME -cne $expected) { throw "Tag '$env:GITHUB_REF_NAME' must equal '$expected'." }
-
-      - name: Run Windows PowerShell 5.1 portable suite
-        shell: powershell
-        run: .\tests\Run-Tests.ps1
 
       - name: Build deterministic release assets
         shell: powershell

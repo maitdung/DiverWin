@@ -14,13 +14,9 @@ concurrency:
 
 jobs:
   safe-tests:
-    name: Safe tests (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: Safe tests (windows-latest)
+    runs-on: windows-latest
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
     steps:
       - name: Check out source
         uses: actions/checkout@v7
@@ -36,7 +32,6 @@ jobs:
         run: ./tests/Run-Tests.ps1
 
       - name: Run safe suite on Windows PowerShell 5.1
-        if: runner.os == 'Windows'
         shell: powershell
         run: |
           if ($PSVersionTable.PSVersion.Major -ne 5) {

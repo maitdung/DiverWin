@@ -22,8 +22,7 @@ Add-FreshWinTest -Name 'Windows launcher starts under Restricted direct-script p
         [void][IO.Directory]::CreateDirectory($launcherRoot)
         [IO.File]::Copy((Join-Path $script:FreshWinTestContext.ProjectRoot 'bin\freshwin.cmd'), (Join-Path $launcherRoot 'freshwin.cmd'))
         $fixtureScript = @'
-$policy = Get-ExecutionPolicy -Scope Process
-[pscustomobject]@{ Policy=[string]$policy; Arguments=@($args) } | ConvertTo-Json -Compress
+[pscustomobject]@{ Executed=$true; Arguments=@($args) } | ConvertTo-Json -Compress
 '@
         $utf8 = New-Object Text.UTF8Encoding -ArgumentList $false
         $entryPath = Join-Path $directory 'FreshWin.ps1'
@@ -56,8 +55,9 @@ $policy = Get-ExecutionPolicy -Scope Process
             Set-Location -LiteralPath $location
             $output = @(& $fixtureLauncher install chrome discord '--dry-run' 2>&1)
             Assert-FreshWinEqual 0 $LASTEXITCODE
+            Assert-FreshWinMatch ($output -join [Environment]::NewLine) '(?m)^\{' -Because 'The isolated launcher did not emit its JSON fixture payload.'
             $payload = ConvertFrom-Json -InputObject ($output -join [Environment]::NewLine) -ErrorAction Stop
-            Assert-FreshWinEqual 'Bypass' ([string]$payload.Policy)
+            Assert-FreshWinTrue ([bool]$payload.Executed) -Because 'The launcher did not execute the unsigned fixture that Restricted direct invocation blocked.'
             Assert-FreshWinEqual 'install,chrome,discord,--dry-run' (@($payload.Arguments) -join ',')
         }
         $policyAfter = @(Get-ExecutionPolicy -List | ForEach-Object { "$($_.Scope)=$($_.ExecutionPolicy)" }) -join ';'
@@ -70,7 +70,7 @@ $policy = Get-ExecutionPolicy -Scope Process
     }
 }
 
-Add-FreshWinTest -Name 'Machine PATH registration is idempotent reversible and Unicode-safe' -Category 'Installer' -ScriptBlock {
+Add-FreshWinTest -Name 'Machine PATH registration is idempotent reversible and Unicode-safe' -Category 'Installer' -Platform Windows -ScriptBlock {
     $entry = 'C:\Program Files\FreshWin\bin'
     $initial = 'C:\Windows;"C:\Program Files\FreshWin\bin\";C:\Tools;C:\PROGRAM FILES\FRESHWIN\BIN'
     $added = Add-FreshWinPathEntryValue -CurrentValue $initial -Entry $entry
