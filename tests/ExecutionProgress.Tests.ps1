@@ -208,6 +208,7 @@ Add-FreshWinTest -Name 'Reviewed terminal dry-run transitions through execution 
     $output = New-Object System.Collections.Generic.List[string]
     $result = Invoke-FreshWinTerminalPlanWorkflow -Session $session -PackageIds @('sample') -DryRun `
         -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource -Package $trustedPackage } `
+        -ProcessInvoker { throw 'A dry-run must not invoke a package-manager process.' } `
         -InputProvider { param($prompt) $prompts.Add([string]$prompt); $inputs.Dequeue() } `
         -OutputWriter { param($line) $output.Add([string]$line) }
     Assert-FreshWinEqual 'DRY_RUN_COMPLETE' $result.Status

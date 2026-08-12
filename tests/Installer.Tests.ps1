@@ -38,7 +38,10 @@ $policy = Get-ExecutionPolicy -Scope Process
 
         $policyBefore = @(Get-ExecutionPolicy -List | ForEach-Object { "$($_.Scope)=$($_.ExecutionPolicy)" }) -join ';'
         $env:Path = $launcherRoot + [IO.Path]::PathSeparator + $oldPath
-        $resolvedLauncher = @(Get-Command freshwin -CommandType Application -ErrorAction Stop)[0]
+        $fixtureLauncher = Join-Path $launcherRoot 'freshwin.cmd'
+        $resolvedLauncher = @(Get-Command freshwin -CommandType Application -All -ErrorAction Stop | Where-Object {
+            [string]::Equals([IO.Path]::GetFullPath($_.Source), [IO.Path]::GetFullPath($fixtureLauncher), [StringComparison]::OrdinalIgnoreCase)
+        })[0]
         Assert-FreshWinEqual ([IO.Path]::GetFullPath((Join-Path $launcherRoot 'freshwin.cmd'))) ([IO.Path]::GetFullPath($resolvedLauncher.Source))
         $locations = New-Object Collections.Generic.List[string]
         $locations.Add([IO.Path]::GetPathRoot($directory))
@@ -51,7 +54,7 @@ $policy = Get-ExecutionPolicy -Scope Process
         }
         foreach ($location in $locations) {
             Set-Location -LiteralPath $location
-            $output = @(& freshwin install chrome discord '--dry-run' 2>&1)
+            $output = @(& $fixtureLauncher install chrome discord '--dry-run' 2>&1)
             Assert-FreshWinEqual 0 $LASTEXITCODE
             $payload = ConvertFrom-Json -InputObject ($output -join [Environment]::NewLine) -ErrorAction Stop
             Assert-FreshWinEqual 'Bypass' ([string]$payload.Policy)

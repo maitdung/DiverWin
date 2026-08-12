@@ -61,6 +61,46 @@ function Assert-FreshWinMatch {
     }
 }
 
+function Get-FreshWinTestPowerShellExecutable {
+    $current = Get-Process -Id $PID -ErrorAction Stop
+    $candidate = [string]$current.Path
+    if (-not [string]::IsNullOrWhiteSpace($candidate) -and [IO.File]::Exists($candidate)) {
+        return [IO.Path]::GetFullPath($candidate)
+    }
+    $names = if ([Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) { @('pwsh.exe','powershell.exe') } else { @('pwsh') }
+    foreach ($name in $names) {
+        $path = Join-Path $PSHOME $name
+        if ([IO.File]::Exists($path)) { return [IO.Path]::GetFullPath($path) }
+    }
+    throw 'The current PowerShell executable could not be resolved for an isolated child-process test.'
+}
+
+function ConvertTo-FreshWinTestNativeArgument {
+    param([Parameter(Mandatory = $true)][AllowEmptyString()][string]$Value)
+    if ($Value.Length -gt 0 -and $Value -notmatch '[\s"]') { return $Value }
+    return '"' + ([regex]::Replace($Value, '(\\*)"', '$1$1\"') -replace '(\\+)$', '$1$1') + '"'
+}
+
+function Invoke-FreshWinTestPowerShellProcess {
+    param(
+        [Parameter(Mandatory = $true)][string]$ProjectRoot,
+        [Parameter(Mandatory = $true)][string[]]$Arguments
+    )
+    $start = New-Object Diagnostics.ProcessStartInfo
+    $start.FileName = Get-FreshWinTestPowerShellExecutable
+    $start.Arguments = (@('-NoLogo','-NoProfile') + @($Arguments) | ForEach-Object { ConvertTo-FreshWinTestNativeArgument -Value ([string]$_) }) -join ' '
+    $start.WorkingDirectory = [IO.Path]::GetFullPath($ProjectRoot)
+    $start.UseShellExecute = $false
+    $start.CreateNoWindow = $true
+    $start.RedirectStandardOutput = $true
+    $start.RedirectStandardError = $true
+    $process = [Diagnostics.Process]::Start($start)
+    $stdout = $process.StandardOutput.ReadToEnd()
+    $stderr = $process.StandardError.ReadToEnd()
+    $process.WaitForExit()
+    return [pscustomobject]@{ ExitCode=[int]$process.ExitCode; Stdout=$stdout; Stderr=$stderr; Executable=$start.FileName; WorkingDirectory=$start.WorkingDirectory }
+}
+
 function Assert-FreshWinCount {
     param([Parameter(Mandatory = $true)][int]$Expected, [AllowNull()][object[]]$Actual, [string]$Because)
     $actualCount = @($Actual).Count

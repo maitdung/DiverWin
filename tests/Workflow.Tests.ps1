@@ -721,7 +721,8 @@ Add-FreshWinTest -Name 'Execution refreshes dependency inventory before authoriz
         $catalog = [pscustomobject]@{ Packages=@($application, $dependency); Errors=@() }
         $emptyInventory = [pscustomobject]@{ Available=$true; Items=@() }
         $plan = New-FreshWinInstallPlan -PackageIds application -Catalog $catalog -SystemInfo (New-FreshWinTestSystemInfo) `
-            -Inventory $emptyInventory -WingetPath $wingetFixture
+            -Inventory $emptyInventory -WingetPath $wingetFixture `
+            -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource $trustedPackage }
         $script:FreshWinDependencyInstallCount = 0
         $result = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory `
             -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource $trustedPackage } `
@@ -755,7 +756,8 @@ Add-FreshWinTest -Name 'Execution pauses at a confirmed reboot boundary and pres
         $catalog = [pscustomobject]@{ Packages=@($runtime, $application); Errors=@() }
         $emptyInventory = [pscustomobject]@{ Available=$true; Items=@() }
         $plan = New-FreshWinInstallPlan -PackageIds @('runtime','application') -Catalog $catalog `
-            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture
+            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture `
+            -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource $trustedPackage }
         $script:FreshWinRebootProcessCount = 0
         $script:FreshWinRebootInventoryCount = 0
         $result = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory `
@@ -793,7 +795,8 @@ Add-FreshWinTest -Name 'Admin-only execution never invokes non-admin package act
         $catalog = [pscustomobject]@{ Packages=@($userPackage, $adminPackage); Errors=@() }
         $emptyInventory = [pscustomobject]@{ Available=$true; Items=@() }
         $plan = New-FreshWinInstallPlan -PackageIds @('user', 'admin') -Catalog $catalog `
-            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture
+            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture `
+            -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource $trustedPackage }
         $script:FreshWinPrivilegeProcessIds = @()
         $script:FreshWinPrivilegeResolverIds = @()
         $result = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo (New-FreshWinTestSystemInfo) `
@@ -844,7 +847,8 @@ Add-FreshWinTest -Name 'Non-admin-only execution never invokes administrator pac
         $systemInfo.Admin = $false
         $systemInfo.IsAdministrator = $false
         $plan = New-FreshWinInstallPlan -PackageIds @('user', 'admin') -Catalog $catalog `
-            -SystemInfo $systemInfo -Inventory $emptyInventory -WingetPath $wingetFixture
+            -SystemInfo $systemInfo -Inventory $emptyInventory -WingetPath $wingetFixture `
+            -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource $trustedPackage }
         $script:FreshWinPrivilegeProcessIds = @()
         $script:FreshWinPrivilegeResolverIds = @()
         $result = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo $systemInfo `
@@ -892,7 +896,8 @@ Add-FreshWinTest -Name 'Opposite-privilege dependencies defer dependents instead
         $catalog = [pscustomobject]@{ Packages=@($adminApplication, $userDependency); Errors=@() }
         $emptyInventory = [pscustomobject]@{ Available=$true; Items=@() }
         $plan = New-FreshWinInstallPlan -PackageIds admin-application -Catalog $catalog `
-            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture
+            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture `
+            -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource $trustedPackage }
         $script:FreshWinUnexpectedPrivilegeCall = $false
         $result = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo (New-FreshWinTestSystemInfo) `
             -Inventory $emptyInventory -ExecutionMode AdminOnly `
@@ -926,7 +931,8 @@ Add-FreshWinTest -Name 'A genuinely failed dependency still blocks its dependent
         $catalog = [pscustomobject]@{ Packages=@($adminApplication, $adminDependency); Errors=@() }
         $emptyInventory = [pscustomobject]@{ Available=$true; Items=@() }
         $plan = New-FreshWinInstallPlan -PackageIds admin-application -Catalog $catalog `
-            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture
+            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $emptyInventory -WingetPath $wingetFixture `
+            -SourceResolver { param($trustedPackage) New-FreshWinTestResolvedSource $trustedPackage }
         $script:FreshWinFailedDependencyCalls = 0
         $result = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo (New-FreshWinTestSystemInfo) `
             -Inventory $emptyInventory -ExecutionMode AdminOnly -MaxAttempts 1 `
@@ -962,7 +968,12 @@ Add-FreshWinTest -Name 'Admin and user phases progress independently around manu
         $catalog = [pscustomobject]@{ Packages=@($admin,$user,$manual); Errors=@() }
         $empty = [pscustomobject]@{ Available=$true; Items=@() }
         $plan = New-FreshWinInstallPlan -PackageIds @('admin-tool','user-tool','manual-tool') -Catalog $catalog `
-            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $empty -WingetPath $winget
+            -SystemInfo (New-FreshWinTestSystemInfo) -Inventory $empty -WingetPath $winget `
+            -SourceResolver {
+                param($trustedPackage)
+                if ([string]$trustedPackage.source.type -eq 'manual') { Resolve-FreshWinPackageSource -Package $trustedPackage }
+                else { New-FreshWinTestResolvedSource $trustedPackage }
+            }
         $script:FreshWinPartitionInstalled = New-Object System.Collections.Generic.List[string]
         $script:FreshWinPartitionCalls = New-Object System.Collections.Generic.List[string]
         $inventoryProvider = {

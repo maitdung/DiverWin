@@ -176,24 +176,22 @@ Add-FreshWinTest -Name 'Module manifest, root module, and CLI entrypoint are pre
 }
 
 Add-FreshWinTest -Name 'CLI help starts in a clean PowerShell process and documents the safe command surface' -Category 'CLI' -ScriptBlock {
-    $entrypoint = Join-Path $script:FreshWinTestContext.ProjectRoot 'FreshWin.ps1'
-    $powerShell = (Get-Process -Id $PID).Path
-    $output = @(& $powerShell -NoLogo -NoProfile -File $entrypoint help 2>&1)
-    $exitCode = $LASTEXITCODE
-    Assert-FreshWinEqual 0 $exitCode ($output -join [Environment]::NewLine)
-    $text = $output -join [Environment]::NewLine
+    $root = $script:FreshWinTestContext.ProjectRoot
+    $entrypoint = Join-Path $root 'FreshWin.ps1'
+    $child = Invoke-FreshWinTestPowerShellProcess -ProjectRoot $root -Arguments @('-File',$entrypoint,'help')
+    Assert-FreshWinEqual 0 $child.ExitCode ($child.Stdout + $child.Stderr)
+    $text = [string]$child.Stdout
     foreach ($command in @('validate','catalog','search','status','history','recommend','plan','install','resume','assistant')) {
         Assert-FreshWinMatch $text "(?m)^\s+$command(?:\s|$)" "Help omitted $command."
     }
 }
 
 Add-FreshWinTest -Name 'CLI validate succeeds in a clean process and returns parseable JSON' -Category 'CLI' -ScriptBlock {
-    $entrypoint = Join-Path $script:FreshWinTestContext.ProjectRoot 'FreshWin.ps1'
-    $powerShell = (Get-Process -Id $PID).Path
-    $output = @(& $powerShell -NoLogo -NoProfile -File $entrypoint validate --json 2>&1)
-    $exitCode = $LASTEXITCODE
-    Assert-FreshWinEqual 0 $exitCode ($output -join [Environment]::NewLine)
-    $result = ($output -join [Environment]::NewLine) | ConvertFrom-Json -ErrorAction Stop
+    $root = $script:FreshWinTestContext.ProjectRoot
+    $entrypoint = Join-Path $root 'FreshWin.ps1'
+    $child = Invoke-FreshWinTestPowerShellProcess -ProjectRoot $root -Arguments @('-File',$entrypoint,'validate','--json')
+    Assert-FreshWinEqual 0 $child.ExitCode ($child.Stdout + $child.Stderr)
+    $result = $child.Stdout | ConvertFrom-Json -ErrorAction Stop
     Assert-FreshWinTrue $result.IsValid ($result.Errors -join '; ')
     Assert-FreshWinTrue ($result.PackageCount -gt 0)
     Assert-FreshWinEqual 4 $result.LocaleCount

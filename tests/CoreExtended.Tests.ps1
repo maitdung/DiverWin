@@ -859,7 +859,9 @@ Add-FreshWinTest -Name 'Execution dry-run bypasses elevation but manual and stal
     $adminPackage = New-FreshWinTestPackage -RequiresAdmin $true
     $catalog = [pscustomobject]@{ Packages = @($adminPackage); Errors = @() }
     $plan = New-FreshWinTestExecutionPlan -Package $adminPackage -DryRun
-    $dryRun = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo $system -Inventory $inventory -SourceResolver { param($package) New-FreshWinTestResolvedSource $package }
+    $dryRun = Invoke-FreshWinExecutionPlan -Plan $plan -Catalog $catalog -SystemInfo $system -Inventory $inventory `
+        -SourceResolver { param($package) New-FreshWinTestResolvedSource $package } `
+        -ProcessInvoker { throw 'A dry-run must not invoke a package-manager process.' }
     Assert-FreshWinEqual 'DRY_RUN_COMPLETE' $dryRun.Status
     Assert-FreshWinEqual 'VALIDATED' $dryRun.Plan.Items[0].State
 
