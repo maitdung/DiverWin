@@ -177,8 +177,7 @@ Add-FreshWinTest -Name 'Module manifest, root module, and CLI entrypoint are pre
 
 Add-FreshWinTest -Name 'CLI help starts in a clean PowerShell process and documents the safe command surface' -Category 'CLI' -ScriptBlock {
     $root = $script:FreshWinTestContext.ProjectRoot
-    $entrypoint = Join-Path $root 'FreshWin.ps1'
-    $child = Invoke-FreshWinTestPowerShellProcess -ProjectRoot $root -Arguments @('-File',$entrypoint,'help')
+    $child = Invoke-FreshWinTestRepositoryCliProcess -ProjectRoot $root -CliArguments @('help')
     Assert-FreshWinEqual 0 $child.ExitCode ($child.Stdout + $child.Stderr)
     $text = [string]$child.Stdout
     foreach ($command in @('validate','catalog','search','status','history','recommend','plan','install','resume','assistant')) {
@@ -188,8 +187,7 @@ Add-FreshWinTest -Name 'CLI help starts in a clean PowerShell process and docume
 
 Add-FreshWinTest -Name 'CLI validate succeeds in a clean process and returns parseable JSON' -Category 'CLI' -ScriptBlock {
     $root = $script:FreshWinTestContext.ProjectRoot
-    $entrypoint = Join-Path $root 'FreshWin.ps1'
-    $child = Invoke-FreshWinTestPowerShellProcess -ProjectRoot $root -Arguments @('-File',$entrypoint,'validate','--json')
+    $child = Invoke-FreshWinTestRepositoryCliProcess -ProjectRoot $root -CliArguments @('validate','--json')
     Assert-FreshWinEqual 0 $child.ExitCode ($child.Stdout + $child.Stderr)
     $result = $child.Stdout | ConvertFrom-Json -ErrorAction Stop
     Assert-FreshWinTrue $result.IsValid ($result.Errors -join '; ')

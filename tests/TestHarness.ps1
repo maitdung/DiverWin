@@ -105,6 +105,65 @@ function Invoke-FreshWinTestPowerShellProcess {
     return [pscustomobject]@{ ExitCode=[int]$process.ExitCode; Stdout=$stdout; Stderr=$stderr; Executable=$start.FileName; WorkingDirectory=$start.WorkingDirectory }
 }
 
+function Test-FreshWinTestAdministrator {
+    if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) { return $false }
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    try {
+        $principal = New-Object Security.Principal.WindowsPrincipal -ArgumentList $identity
+        return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+    }
+    finally { if ($identity -is [IDisposable]) { $identity.Dispose() } }
+}
+
+function Invoke-FreshWinTestRepositoryCliProcess {
+    param(
+        [Parameter(Mandatory = $true)][string]$ProjectRoot,
+        [Parameter(Mandatory = $true)][string[]]$CliArguments
+    )
+
+    $sourceRoot = [IO.Path]::GetFullPath($ProjectRoot)
+    $executionRoot = $sourceRoot
+    $protectedFixture = $null
+    try {
+        # GitHub's Windows runner can execute the suite with an administrator
+        # token. FreshWin must continue rejecting an elevated, user-writable
+        # checkout, so exercise the real entrypoint from an isolated protected
+        # payload fixture instead of weakening the startup trust boundary.
+        if (Test-FreshWinTestAdministrator) {
+            $programFiles = [Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFiles)
+            if ([string]::IsNullOrWhiteSpace($programFiles)) { throw 'Program Files could not be resolved for the elevated CLI fixture.' }
+            $protectedFixture = Join-Path $programFiles ('FreshWin-CI-Test-' + [guid]::NewGuid().ToString('N'))
+            [void][IO.Directory]::CreateDirectory($protectedFixture)
+
+            if ($null -eq (Get-Command -Name Get-FreshWinInstallPayloadRelativePaths -ErrorAction SilentlyContinue)) {
+                . (Join-Path $sourceRoot 'installer\Install.Common.ps1')
+            }
+            foreach ($relativePath in @(Get-FreshWinInstallPayloadRelativePaths -SourceRoot $sourceRoot)) {
+                $sourcePath = Join-Path $sourceRoot $relativePath
+                $destinationPath = Join-Path $protectedFixture $relativePath
+                $destinationParent = [IO.Path]::GetDirectoryName($destinationPath)
+                if (-not [IO.Directory]::Exists($destinationParent)) { [void][IO.Directory]::CreateDirectory($destinationParent) }
+                [IO.File]::Copy($sourcePath, $destinationPath, $false)
+            }
+            $executionRoot = $protectedFixture
+        }
+
+        $entrypoint = Join-Path $executionRoot 'FreshWin.ps1'
+        return Invoke-FreshWinTestPowerShellProcess -ProjectRoot $executionRoot -Arguments (@('-File',$entrypoint) + @($CliArguments))
+    }
+    finally {
+        if (-not [string]::IsNullOrWhiteSpace($protectedFixture) -and [IO.Directory]::Exists($protectedFixture)) {
+            $programFilesPrefix = [IO.Path]::GetFullPath([Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFiles)).TrimEnd([char]'\', [char]'/') + [IO.Path]::DirectorySeparatorChar
+            $fixtureFullPath = [IO.Path]::GetFullPath($protectedFixture)
+            if (-not $fixtureFullPath.StartsWith($programFilesPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+                [IO.Path]::GetFileName($fixtureFullPath) -notmatch '^FreshWin-CI-Test-[a-f0-9]{32}$') {
+                throw "Refusing to remove an invalid protected CLI fixture path: $fixtureFullPath"
+            }
+            [IO.Directory]::Delete($fixtureFullPath, $true)
+        }
+    }
+}
+
 function Assert-FreshWinCount {
     param([Parameter(Mandatory = $true)][int]$Expected, [AllowNull()][object[]]$Actual, [string]$Because)
     $actualCount = @($Actual).Count
